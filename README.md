@@ -10,7 +10,7 @@ git submodule add https://github.com/RomaTk/docker-wraps-nvm-module.git modules/
 ## Wraps:
 After that you will have the following wraps available:
 - `nvm-get-latest-version`
-- `nvm-download`
+- `nvm-download-without-configs`
 - `nvm-download-with-configs`
 - `nvm-install`
 
