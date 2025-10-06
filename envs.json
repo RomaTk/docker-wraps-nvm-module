@@ -1,0 +1,110 @@
+{
+    "wraps": {
+        "nvm-get-latest-version": {
+            "basedOn": [
+                {
+                    "name": "ubuntu-wget-install",
+                    "tag": "latest",
+                    "precreate": true
+                },
+                {
+                    "name": "ubuntu-jq-install",
+                    "tag": "latest",
+                    "precreate": true
+                }
+            ],
+            "dockerfile": "./dockers/nvm/get-latest-version/Dockerfile",
+            "build": {
+                "context": "./dockers/nvm/get-latest-version"
+            },
+            "run": {
+                "volumes": [
+                    {
+                        "destination": "/working-env/nvm/configs",
+                        "source": "./dockers/nvm/get-latest-version/configs"
+                    }
+                ],
+                "entrypoint": {
+                    "tool": "bash",
+                    "args": [
+                        "-c"
+                    ],
+                    "commands": [
+                        "/working-env/git-lfs/main.sh"
+                    ]
+                }
+            },
+            "clean": [
+                "source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"get-latest-version\""
+            ]
+        },
+        "nvm-download-without-configs": {
+            "basedOn": {
+                "name": "ubuntu-wget-install",
+                "tag": "latest",
+                "precreate": true
+            },
+            "dockerfile": "./dockers/nvm/download/without-configs/Dockerfile",
+            "build": {
+                "context": "./dockers/nvm/download/without-configs"
+            },
+            "run": {
+                "volumes": [
+                    {
+                        "destination": "/working-env/nvm/download/saved",
+                        "source": "./dockers/nvm/install/saved-versions"
+                    }
+                ],
+                "entrypoint": {
+                    "tool": "bash",
+                    "args": [
+                        "-c"
+                    ],
+                    "commands": [
+                        "(source /working-env/nvm/download/main.sh && main)"
+                    ]
+                }
+            }
+        },
+        "nvm-download-with-configs": {
+            "basedOn": {
+                "name": "nvm-download-without-configs",
+                "tag": "latest",
+                "precreate": true
+            },
+            "dockerfile": "./dockers/nvm/download/with-configs/Dockerfile",
+            "build": {
+                "context": "./dockers/nvm/download/with-configs"
+            },
+            "clean": [
+                "source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"download\""
+            ]
+        },
+        "nvm-install": {
+            "basedOn": {
+                "name": "ubuntu-with-latest-packages",
+                "tag": "latest",
+                "precreate": true
+            },
+            "dockerfile": "./dockers/nvm/install/Dockerfile",
+            "build": {
+                "context": "./dockers/nvm/install",
+                "options": [
+                    "--build-arg VERSION=\"$(source ./env-scripts/not-by-wrap-name/install-some-util/read-version.sh && main \"./dockers/nvm\")\""
+                ],
+                "run": {
+                    "before": [
+                        "source ./env-scripts/nvm/install/prepare-before-build.sh && main \"\" \"linux\" \"./dockers/nvm\""
+                    ],
+                    "after": [
+                        "source \"./env-scripts/not-by-wrap-name/backups/make.sh\" && main \"$(./envs.sh get name image nvm-install)\""
+                    ]
+                }
+            },
+            "clean": [
+                "source \"./env-scripts/not-by-wrap-name/backups/clean.sh\" && main \"$(./envs.sh get name image nvm-install)\"",
+                "source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"install\""
+            ]
+        }
+    }
+}

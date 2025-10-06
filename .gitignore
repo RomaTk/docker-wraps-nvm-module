@@ -1,0 +1,7 @@
+/dockers/nvm/get-latest-version/configs
+/dockers/nvm/install/configs
+/dockers/nvm/install/saved-versions
+/dockers/nvm/download/with-configs/configs
+
+/dockers/nvm/nvm
+/env-scripts/nvm/nvm
