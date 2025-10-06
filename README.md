@@ -26,7 +26,7 @@ To use you need to have modules:
 - https://github.com/RomaTk/docker-wraps-backups-module.git
     - This module will allow to avoid rebuilding images if they are already built.
 - https://github.com/RomaTk/docker-wraps-ubuntu-module.git
-    - This module will allow to have ubuntu image as base for git images.
+    - This module will allow to have ubuntu image as base for nvm images.
 - https://github.com/RomaTk/docker-wraps-install-some-util-module.git
     - This module will provide env-scripts for common way to install some utils in the docker wraps environment.
 
