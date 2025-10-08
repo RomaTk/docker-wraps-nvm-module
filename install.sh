@@ -16,6 +16,9 @@ function main() {
 
     ln -sf "../$current_dir/env-scripts/nvm" "../../env-scripts/nvm"
     [ $? -ne 0 ] && exit 1
+
+    ln -sf "../$current_dir/envs.json" "../../env-jsons/nvm.json"
+    [ $? -ne 0 ] && exit 1
     
     mktemp_file=$(mktemp)
     [ $? -ne 0 ] && exit 1
