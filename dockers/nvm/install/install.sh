@@ -1,11 +1,21 @@
 #!/bin/bash
 
-version=$1
+version="$1"
+prefix="$2"
+
+if [ -z "$version" ]; then
+    echo "Error: version not specified"
+    exit 1
+fi
+
+if [ -z "$prefix" ]; then
+    prefix="/usr/local"
+fi
 
 cd ./saved-versions
 [ $? -ne 0 ] && exit 1
 
-dest_folder="/usr/local/nvm-${version}"
+dest_folder="${prefix}/lib/nvm-${version}"
 
 if [ ! -d "$dest_folder" ]; then
     mkdir -p "$dest_folder"
@@ -15,7 +25,7 @@ fi
 tar -xzf "${version}.tar.gz" -C "$dest_folder" --strip-components=1
 [ $? -ne 0 ] && exit 1
 
-if [ -f "/bin/nvm" ]; then
+if [ -f "${prefix}/bin/nvm" ]; then
     echo "Error: NVM already installed"
     exit 1
 fi
@@ -25,10 +35,10 @@ source $dest_folder/nvm.sh
 [ \$? -ne 0 ] && exit 1
 nvm \"\$@\"
 exit \$?
-"   > /bin/nvm
+"   > "${prefix}/bin/nvm"
 [ $? -ne 0 ] && exit 1
 
-chmod +x /bin/nvm
+chmod +x "${prefix}/bin/nvm"
 [ $? -ne 0 ] && exit 1
 
 exit 0
