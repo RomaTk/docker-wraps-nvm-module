@@ -35,7 +35,7 @@
                 }
             },
             "clean": [
-                "source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"get-latest-version\""
+                "(source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"get-latest-version\")"
             ]
         },
         "nvm-download-without-configs": {
@@ -77,7 +77,7 @@
                 "context": "./dockers/nvm/download/with-configs"
             },
             "clean": [
-                "source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"download\""
+                "(source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"download\")"
             ]
         },
         "nvm-install": {
@@ -94,16 +94,16 @@
                 ],
                 "run": {
                     "before": [
-                        "source ./env-scripts/nvm/install/prepare-before-build.sh && main \"\" \"linux\" \"./dockers/nvm\""
+                        "(source ./env-scripts/nvm/install/prepare-before-build.sh && main \"\" \"linux\" \"./dockers/nvm\")"
                     ],
                     "after": [
-                        "source \"./env-scripts/not-by-wrap-name/backups/make.sh\" && main \"$(./envs.sh get name image nvm-install)\""
+                        "(source \"./env-scripts/not-by-wrap-name/backups/make.sh\" && main \"$(./envs.sh get name image nvm-install)\")"
                     ]
                 }
             },
             "clean": [
-                "source \"./env-scripts/not-by-wrap-name/backups/clean.sh\" && main \"$(./envs.sh get name image nvm-install)\"",
-                "source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"install\""
+                "(source \"./env-scripts/not-by-wrap-name/backups/clean.sh\" && main \"$(./envs.sh get name image nvm-install)\")",
+                "(source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"install\")"
             ]
         }
     }
