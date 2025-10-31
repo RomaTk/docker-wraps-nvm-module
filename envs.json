@@ -30,7 +30,7 @@
                         "-c"
                     ],
                     "commands": [
-                        "/working-env/nvm/main.sh"
+                        "(source /working-env/nvm/main.sh && main)"
                     ]
                 }
             },
