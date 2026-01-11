@@ -77,7 +77,8 @@
                 "context": "./dockers/nvm/download/with-configs"
             },
             "clean": [
-                "(source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"download\")"
+                "(source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"download\")",
+                "(source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"install\")"
             ]
         },
         "nvm-install": {
@@ -102,8 +103,7 @@
                 }
             },
             "clean": [
-                "(source \"./env-scripts/not-by-wrap-name/backups/clean.sh\" && main \"$(./envs.sh get name image nvm-install)\")",
-                "(source ./env-scripts/not-by-wrap-name/install-some-util/clean.sh && main \"./dockers/nvm\" \"install\")"
+                "(source \"./env-scripts/not-by-wrap-name/backups/clean.sh\" && main \"$(./envs.sh get name image nvm-install)\")"
             ]
         }
     }
