@@ -9,10 +9,11 @@ git submodule add https://github.com/RomaTk/docker-wraps-nvm-module.git modules/
 
 ## Wraps:
 After that you will have the following wraps available:
-- `nvm-get-latest-version`
-- `nvm-download-without-configs`
-- `nvm-download-with-configs`
-- `nvm-install`
+- [File - envs.json](./envs.json)
+    - `nvm-get-latest-version`
+    - `nvm-download-without-configs`
+    - `nvm-download-with-configs`
+    - `nvm-install`
 
 You can specify which version of nvm you want to use by modifying `build.run.before` in `nvm-install` wrap. Within:
 ```bash
