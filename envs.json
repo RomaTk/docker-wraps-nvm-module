@@ -105,6 +105,38 @@
             "clean": [
                 "(source \"./env-scripts/not-by-wrap-name/backups/clean.sh\" && main \"$(./envs.sh get name image nvm-install)\")"
             ]
+        },
+        "nvm-install-test": {
+            "basedOn": [
+                {
+                    "name": "nvm-install",
+                    "tag": "latest",
+                    "precreate": true,
+                    "asAbstract": true
+                }
+            ],
+            "build": {
+                "run": {
+                    "after": [
+                        {
+                            "action": "remove",
+                            "value": "(source \"./env-scripts/not-by-wrap-name/backups/make.sh\" && main \"$(./envs.sh get name image nvm-install)\")",
+                            "basedOnScope": "nvm-install"
+                        }
+                    ]
+                }
+            },
+            "run": {
+                "entrypoint": {
+                    "tool": "bash",
+                    "args": [
+                        "-c"
+                    ],
+                    "commands": [
+                        "(nvm --version)"
+                    ]
+                }
+            }
         }
     }
 }

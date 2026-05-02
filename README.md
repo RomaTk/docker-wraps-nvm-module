@@ -14,6 +14,7 @@ After that you will have the following wraps available:
     - `nvm-download-without-configs`
     - `nvm-download-with-configs`
     - `nvm-install`
+    - `nvm-install-test` - only for testing porposes
 
 You can specify which version of nvm you want to use by modifying `build.run.before` in `nvm-install` wrap. Within:
 ```bash
